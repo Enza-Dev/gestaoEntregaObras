@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Entrega de Obras</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            color: #73879C;
+            background: #2A3F54; 
+            font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+            font-size: 13px;
+            padding: 20px;
+        }
+
+        .main_container {
+            background: #F7F7F7;
+            padding: 20px;
+            border-radius: 4px;
+            min-height: 100vh;
+        }
+
+        /* Título Principal */
+        .page-title {
+            border-bottom: 2px solid #E6E9ED;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 5px;
+        }
+        
+        .page-title h1 {
+            color: #5A738E;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tabs {
+            border-bottom: 2px solid #E6E9ED;
+            margin-bottom: 15px;
+        }
+        .nav-tabs > li > a {
+            color: #5A738E;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs > li.active > a, 
+        .nav-tabs > li.active > a:focus, 
+        .nav-tabs > li.active > a:hover {
+            color: #26b99a;
+            border: none;
+            border-bottom: 2px solid #26b99a;
+            background: transparent;
+        }
+
+        .x_panel {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px 17px;
+            display: inline-block;
+            background: #fff;
+            border: 1px solid #E6E9ED;
+            box-sizing: border-box;
+        }
+
+        .x_title {
+            border-bottom: 2px solid #E6E9ED;
+            padding: 1px 5px 6px;
+            margin-bottom: 10px;
+        }
+
+        .x_title h2 {
+            margin: 5px 0 6px;
+            float: left;
+            color: #73879C;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .table > thead > tr > th {
+            background-color: #f9f9f9;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 11px;
+            color: #5A738E;
+            text-transform: uppercase;
+        }
+
+        .table > tbody > tr > td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .pendencias-cell {
+            text-align: left !important;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .action-column {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .action-column .btn-action {
+            width: 100%;
+            margin: 0;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .clearfix { clear: both; }
+    </style>
+</head>
+<body>
+
+<div class="main_container">
+    
+    <div class="page-title">
+        <h1>Gestão de Entrega de Obras</h1>
+    </div>
+
+    <ul id="vistoriasTabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#blocoA" id="blocoA-tab" role="tab" data-toggle="tab" aria-controls="blocoA" aria-expanded="true">Bloco A</a>
+        </li>
+        <li role="presentation">
+            <a href="#blocoB" role="tab" id="blocoB-tab" data-toggle="tab" aria-controls="blocoB">Bloco B</a>
+        </li>
+        <li role="presentation">
+            <a href="#blocoE" role="tab" id="blocoE-tab" data-toggle="tab" aria-controls="blocoE">Bloco E</a>
+        </li>
+    </ul>
+
+    <div id="vistoriasTabContent" class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade active in" id="blocoA" aria-labelledby="blocoA-tab">
+            
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="line-height: 30px;">Unidade 1 (PATRICK RAFAEL RAMOS)</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="8%">Data</th>
+                                <th width="8%">Situação</th>
+                                <th width="18%">Pendências</th>
+                                <th width="12%">Vistoriador</th>
+                                <th width="12%">Vistoria Interna</th>
+                                <th width="12%">Vistoria Cliente</th>
+                                <th width="12%">Termo Entrega</th>
+                                <th width="18%">Pesq. Satisfação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>24/03/2026</td>
+                                <td><span class="label label-warning">Pendente</span></td>
+                                <td class="pendencias-cell">Área de Serviço, Banheiro, Quarto 1, Quarto 2, Sala de Estar / Jantar</td>
+                                <td>Engenharia 2</td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza-dev.github.io/VistoriaInterna/" target="_blank" class="btn btn-primary btn-xs btn-action"><i class="fa fa-refresh"></i> Refazer Vistoria</a>
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver Vistoria 1</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza-dev.github.io/VistoriaInterna/" target="_blank" class="btn btn-primary btn-xs btn-action"><i class="fa fa-refresh"></i> Refazer Vistoria</a>
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver Vistoria 1</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                    </div>
+                                </td>
+                                
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="line-height: 30px;">Unidade 2 (JOÃO PEDRO LOPES)</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="8%">Data</th>
+                                <th width="8%">Situação</th>
+                                <th width="18%">Pendências</th>
+                                <th width="12%">Vistoriador</th>
+                                <th width="12%">Vistoria Interna</th>
+                                <th width="12%">Vistoria Cliente</th>
+                                <th width="12%">Termo Entrega</th>
+                                <th width="18%">Pesq. Satisfação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17/05/2025</td>
+                                <td><span class="label label-success">Aprovado</span></td>
+                                <td class="pendencias-cell">-</td>
+                                <td>Engenharia 4</td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF Assinado</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="#" class="btn btn-success btn-xs btn-action"><i class="fa fa-star"></i> Pesquisa de Satisfação</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="blocoB" aria-labelledby="blocoB-tab">
+            
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="line-height: 30px;">Unidade 15 (MARIA SILVA)</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="8%">Data</th>
+                                <th width="8%">Situação</th>
+                                <th width="18%">Pendências</th>
+                                <th width="12%">Vistoriador</th>
+                                <th width="12%">Vistoria Interna</th>
+                                <th width="12%">Vistoria Cliente</th>
+                                <th width="12%">Termo Entrega</th>
+                                <th width="18%">Pesq. Satisfação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>-</td>
+                                <td><span class="label label-default">Agendado</span></td>
+                                <td class="pendencias-cell">-</td>
+                                <td>-</td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza-dev.github.io/VistoriaInterna/" target="_blank" class="btn btn-primary btn-xs btn-action"><i class="fa fa-check-square-o"></i> Realizar Vistoria Interna</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza-dev.github.io/VistoriaInterna/" target="_blank" class="btn btn-success btn-xs btn-action" style="background-color: #26b99a;"><i class="fa fa-plus"></i> Nova Vistoria</a>
+                                    </div>
+                                </td>
+                                
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="blocoE" aria-labelledby="blocoE-tab">
+            
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="line-height: 30px;">Unidade 14 (ELISABETH VENTURA FERREIRA)</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="8%">Data</th>
+                                <th width="8%">Situação</th>
+                                <th width="18%">Pendências</th>
+                                <th width="12%">Vistoriador</th>
+                                <th width="12%">Vistoria Interna</th>
+                                <th width="12%">Vistoria Cliente</th>
+                                <th width="12%">Termo Entrega</th>
+                                <th width="18%">Pesq. Satisfação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/04/2026</td>
+                                <td><span class="label label-success">Aprovado</span></td>
+                                <td class="pendencias-cell">-</td>
+                                <td>Douglas</td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/vistoria.php?id=175" target="_blank" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver Vistoria 1</a>
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/vistoria.php?id=176" target="_blank" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver Vistoria 2</a>
+                                        <a href="#" target="_blank" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="#" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver</a>
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/vistoria_pdf2.php?id=176" target="_blank" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/vistoria_termo.php?id=176" target="_blank" class="btn btn-info btn-xs btn-action"><i class="fa fa-eye"></i> Ver</a>
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/vistoria_pdf.php?id=176" target="_blank" class="btn btn-danger btn-xs btn-action"><i class="fa fa-file-pdf-o"></i> PDF Assinado</a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="action-column">
+                                        <a href="https://enza.com.br/sistema/jabuticabeiras/pesquisa_satisfacao.php?vistoria_id=176&bloco=5&unidade=14&cliente=ELISABETH+VENTURA+FERREIRA+" target="_blank" class="btn btn-success btn-xs btn-action"><i class="fa fa-star"></i> Pesquisa de Satisfação</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
